@@ -6,45 +6,13 @@
 
 import SwiftUI
 
-struct ImagePicker: UIViewControllerRepresentable {
-    @Binding var image: UIImage?
-    var sourceType: UIImagePickerController.SourceType
-
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.sourceType = sourceType
-        picker.delegate = context.coordinator
-        return picker
-    }
-
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(self)
-    }
-
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let parent: ImagePicker
-
-        init(_ parent: ImagePicker) {
-            self.parent = parent
-        }
-
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let selectedImage = info[.originalImage] as? UIImage {
-                parent.image = selectedImage
-            }
-            picker.dismiss(animated: true)
-        }
-    }
-}
-
 
 struct ContentView: View {
     @State var val:String = ""
     @State private var showImagePicker = false
     @State private var image: UIImage? = nil
     @State private var sourceType: UIImagePickerController.SourceType = .camera
+    let api_url = URL(string: "http://172.16.48.212:5001/predict")
     var body: some View {
         Spacer()
         Text("Plant Disease Detection")
@@ -82,6 +50,7 @@ struct ContentView: View {
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1))
                         
                 Button("Submit") {
+                    sendImageToServer(img: image!, url: api_url!)
                 }.font(.headline)
                     .padding(.horizontal, 15)
                     .padding(.vertical, 12)

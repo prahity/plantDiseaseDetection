@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C222F772D73AEBE00364A46 /* ImageFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C222F762D73AEBE00364A46 /* ImageFunc.swift */; };
 		6C7F718B2D737A74009BC72D /* PlantDiseaseDetectionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F718A2D737A74009BC72D /* PlantDiseaseDetectionApp.swift */; };
 		6C7F718D2D737A74009BC72D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F718C2D737A74009BC72D /* ContentView.swift */; };
 		6C7F718F2D737A75009BC72D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C7F718E2D737A75009BC72D /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C222F762D73AEBE00364A46 /* ImageFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFunc.swift; sourceTree = "<group>"; };
 		6C7F71872D737A74009BC72D /* PlantDiseaseDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlantDiseaseDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C7F718A2D737A74009BC72D /* PlantDiseaseDetectionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDiseaseDetectionApp.swift; sourceTree = "<group>"; };
 		6C7F718C2D737A74009BC72D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 		6C7F71892D737A74009BC72D /* PlantDiseaseDetection */ = {
 			isa = PBXGroup;
 			children = (
+				6C222F762D73AEBE00364A46 /* ImageFunc.swift */,
 				6C7F718A2D737A74009BC72D /* PlantDiseaseDetectionApp.swift */,
 				6C7F718C2D737A74009BC72D /* ContentView.swift */,
 				6C7F718E2D737A75009BC72D /* Assets.xcassets */,
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C7F718D2D737A74009BC72D /* ContentView.swift in Sources */,
+				6C222F772D73AEBE00364A46 /* ImageFunc.swift in Sources */,
 				6C7F718B2D737A74009BC72D /* PlantDiseaseDetectionApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
