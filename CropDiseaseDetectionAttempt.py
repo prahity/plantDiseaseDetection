@@ -1,6 +1,8 @@
 import requests
 
-def uiuc_chat_call():
+def uiuc_chat_call(plant, disease):
+    if (disease == "healthy"):
+        return "Your " + plant + " plant is healthy. Make sure to continue nurturing it."
     api_url = "https://uiuc.chat/api/chat-api/chat"
     headers = {"Content-Type": "application/json"}
 
@@ -14,7 +16,7 @@ def uiuc_chat_call():
                 "content": "You are a helpful AI assistant to help farmers with treating plant diseases. Follow instructions carefully. Assume no technical expertise or programming experience when making suggestions. Respond using markdown. Limit response to under 200 words."
                 # "content": "You are a helpful AI assistant to help farmers with treating plant diseases. Deliver at least three potential causes and origins of the disease and at least three symptoms. Provide three suggestions for natural, non-chemical cures to the diseases. Follow instructions carefully. Assume no technical expertise or programming experience when making suggestions. Respond using markdown."
                 # "content": "You are a helpful AI assistant to help farmers learn more about the disease that their plant is affected by. Elaborate on the disease's potential causes and origins, symptoms, and suggestions for natural cures.  Follow instructions carefully. Assume low technical expertise & no programming experience when making suggestions. Do not promote chemical solutions; only promote natural alternatives. Respond using markdown."
-            },
+            }, 
             {
                 "role": "user",
                 "content": [
@@ -26,7 +28,7 @@ def uiuc_chat_call():
                     # },
                     {
                       "type": "text",
-                      "text": "My plant is suffering from downy mildew. Give a description of downy mildew and its potential causes. Recommend three natural, no-chemical and no-pesticide treatment options."
+                      "text": "My " + plant + " is suffering from " + disease + ". Give a description of "  + disease + " and its potential causes. Recommend three natural, no-chemical and no-pesticide treatment options."
                         # "text": "My tomato plant is suffering from scab disease. Give a description of scab disease. Recommend three natural, no-chemical and no-pesticide treatment options."  # Good example; output is very thorough.
                       # "text": "My TOMATO PLANT is suffering from SCAB DISEASE. Give a description of SCAB DISEASE. Recommend three natural, no-chemical and no-pesticide treatment options."
                       # keywords are in all capital letters
@@ -51,7 +53,6 @@ def uiuc_chat_call():
     print(response.text)
     return response.text
 
-uiuc_chat_call()
 
 # data = {
 #     "model": "Qwen/Qwen2.5-VL-72B-Instruct",

@@ -1,2 +1,4 @@
 .tensorflow_env
 .tensorflow_env_2
+plant_disease_model_inception_first.keras
+__pycache__
