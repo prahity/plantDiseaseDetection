@@ -46,7 +46,7 @@ def predict():
     disease = predictString.split("___")
     text = uiuc_chat_call(disease[0], disease[1])
 
-    return jsonify({'prediction' : text})
+    return jsonify({'plant' : disease[0], 'disease': disease[1] 'prediction' : text})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
