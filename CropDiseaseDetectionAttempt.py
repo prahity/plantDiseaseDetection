@@ -10,7 +10,9 @@ data = {
     "messages": [
         {
             "role": "system",
-            "content": "You are a helpful AI assistant to help farmers learn more about the disease that their plant is affected by. Elaborate on the disease's potential causes and origins, symptoms, and suggestions for natural cures.  Follow instructions carefully. Assume low technical expertise & no programming experience when making suggestions. Do not promote chemical solutions; only promote natural alternatives. Respond using markdown."
+            "content": "You are a helpful AI assistant to help farmers with treating plant diseases. Follow instructions carefully. Assume no technical expertise or programming experience when making suggestions. Respond using markdown."
+            # "content": "You are a helpful AI assistant to help farmers with treating plant diseases. Deliver at least three potential causes and origins of the disease and at least three symptoms. Provide three suggestions for natural, non-chemical cures to the diseases. Follow instructions carefully. Assume no technical expertise or programming experience when making suggestions. Respond using markdown."
+            # "content": "You are a helpful AI assistant to help farmers learn more about the disease that their plant is affected by. Elaborate on the disease's potential causes and origins, symptoms, and suggestions for natural cures.  Follow instructions carefully. Assume low technical expertise & no programming experience when making suggestions. Do not promote chemical solutions; only promote natural alternatives. Respond using markdown."
         },
         {
             "role": "user",
@@ -23,7 +25,9 @@ data = {
                 },
                 {
                   "type": "text",
-                  "text": "My tomato plant is suffering from an unknown disease. Identify the disease and specific methods to cure the disease."
+                  "text": "My tomato plant is suffering from scab disease. Give a description of scab disease. Recommend three natural, no-chemical and no-pesticide treatment options."
+                  # "text": "My TOMATO PLANT is suffering from SCAB DISEASE. Give a description of SCAB DISEASE. Recommend three natural, no-chemical and no-pesticide treatment options."
+                  # keywords are in all capital letters
                 }
             ]
         },
@@ -33,62 +37,54 @@ data = {
         },
         {
             "role": "user",
-            "content": "Continue with your previous response. Do not start from the beginning."
-        },
+            "content": "Finish with your previous response. Do not start from the beginning."
+        }
     ],
     "stream": True,
-    "temperature": 0.1,
+    "temperature": 0,
     "retrieval_only": False
 }
 
-response = requests.post(api_url, headers=headers, json=data)
-print(response.text)
-
-# curl -X POST https://uiuc.chat/api/chat-api/chat \
-#   -H "Content-Type: application/json" \
-#   -d '{
-#     "model": "",
-#     "messages": [
-#       {
-#         "role": "system",
-#         "content": "You are a helpful AI assistant. Follow instructions carefully. Respond using markdown."
-#       },
-#       {
-#         "role": "user",
-#         "content": "What is in these documents?"
-#       }
-#     ],
-#     "api_key": "uc_1c1ba05bdad4432a997d3994e5586577",
-#     "course_name": "Crop-Disease-Detection",
-#     "stream": true,
-#     "temperature": 0.1,
-#     "retrieval_only": false
-#   }'
-
-# import requests
-#
-# url = "https://uiuc.chat/api/chat-api/chat"
-# headers = {
-#     'Content-Type': 'application/json',
-# }
 # data = {
-#     "model": "gpt-4o-mini",
+#     "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+#     "api_key": "uc_4bd07406e20340a1b61e75cc715f5277",
+#     "course_name": "Crop-Disease-Detection",
 #     "messages": [
 #         {
 #             "role": "system",
-#             "content": "Your system prompt here"
+#             "content": "You are a helpful AI assistant to help farmers with treating plant diseases. Deliver at least three potential causes and origins of the disease and at least three symptoms. Provide three suggestions for natural, non-chemical cures to the diseases. Follow instructions carefully. Assume no technical expertise or programming experience when making suggestions. Respond using markdown."
+#             # "content": "You are a helpful AI assistant to help farmers learn more about the disease that their plant is affected by. Elaborate on the disease's potential causes and origins, symptoms, and suggestions for natural cures.  Follow instructions carefully. Assume low technical expertise & no programming experience when making suggestions. Do not promote chemical solutions; only promote natural alternatives. Respond using markdown."
 #         },
 #         {
 #             "role": "user",
-#             "content": "What is in these documents?"
+#             "content": [
+#                 {
+#                   "type": "image_url",
+#                   "image_url": {
+#                     "url": "C:\\Users\\aljla\\Downloads\\sickplant2.jpg"
+#                   }
+#                 },
+#                 {
+#                   "type": "text",
+#                   "text": "Tell me about George Washington Carver."  # This irrelevant question kind of crashes the model
+#                   # "text": "My tomato plant is suffering from scab disease."
+#                   # "text": "My tomato plant is suffering from scab disease. Identify potential origins or causes of this disease. Recommend three natural, no-chemical and no-pesticide treatment options."
+#                 }
+#             ]
+#         },
+#         {
+#             "role": "user",
+#             "content": "Continue with your previous response. Do not start from the beginning."
+#         },
+#         {
+#             "role": "user",
+#             "content": "Finish with your previous response. Do not start from the beginning."
 #         }
 #     ],
-#     "openai_key": "YOUR-OPENAI-KEY-HERE",
-#     "temperature": 0.1,
-#     "course_name": "your-course-name",
 #     "stream": True,
-#     "api_key": "YOUR_API_KEY"
+#     "temperature": 0,
+#     "retrieval_only": False
 # }
-#
-# response = requests.post(url, headers=headers, json=data)
-# print(response.text)
+
+response = requests.post(api_url, headers=headers, json=data)
+print(response.text)
