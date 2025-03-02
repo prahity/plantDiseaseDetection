@@ -19,7 +19,6 @@ func sendImageToServer(img: UIImage, url: URL, rp: @escaping (String?) -> Void) 
     request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
     var body = Data()
-
     body.append("--\(boundary)\r\n".data(using: .utf8)!)
     body.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.jpg\"\r\n".data(using: .utf8)!)
     body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
@@ -41,20 +40,42 @@ func sendImageToServer(img: UIImage, url: URL, rp: @escaping (String?) -> Void) 
             print("Failed to upload image.")
         }
 
-        if let data = data, let responseString = String(data: data, encoding: .utf8) {
-            DispatchQueue.main.async {
-                rp(responseString)
+        // Parse JSON response
+        if let data = data {
+            do {
+                // Decoding the JSON response into a dictionary
+                let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                if let disease = jsonResponse?["disease"] as? String,
+                   let plant = jsonResponse?["plant"] as? String,
+                   let prediction = jsonResponse?["prediction"] as? String {
+                    let formattedResponse = """
+                    Plant: \(plant)
+                    Disease/Condition: \(disease)
+                    Prediction: \(prediction)
+                    """
+                    DispatchQueue.main.async {
+                        rp(formattedResponse)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        rp("Error: Malformed response")
+                    }
+                }
+            } catch {
+                print("Error parsing JSON response: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    rp("Error parsing response")
+                }
             }
         } else {
             DispatchQueue.main.async {
-                rp(nil)
+                rp("No data received from server")
             }
         }
     }
 
     task.resume()
 }
-
 
 struct ImagePicker: UIViewControllerRepresentable {
     @Binding var image: UIImage?
